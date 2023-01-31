@@ -26,6 +26,18 @@ public static class Utilities
         return listNumbers;
     }
     
+    public static void Shuffle<T>(this IList<T> list, Random random)
+    {
+        int count = list.Count;
+        int last = count - 1;
+            
+        for (int i = 0; i < last; ++i)
+        {
+            int randomIndex = random.Next(i, count);
+            (list[i], list[randomIndex]) = (list[randomIndex], list[i]);
+        }
+    }
+    
     public static string DisplayVectorsByConditions(IEnumerable<Vector2Int> vectors, IEnumerable<ICondition> conditions)
     {
         string conditionsText= "";

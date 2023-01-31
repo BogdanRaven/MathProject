@@ -24,7 +24,7 @@ public class ConditionsDisplayer : MonoBehaviour
 
         if (success)
         {
-            List<Vector2Int> vector2Elements = generator.Generate(-max, max, count);
+            IEnumerable<Vector2Int> vector2Elements = generator.Generate(-max, max, count);
             answersTxt.text = Utilities.DisplayVectorsByConditions(vector2Elements, conditions);
         }
         else

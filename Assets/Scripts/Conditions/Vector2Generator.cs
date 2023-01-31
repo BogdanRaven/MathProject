@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = System.Random;
 
 namespace ConditionsLogic
 {
@@ -13,7 +15,7 @@ namespace ConditionsLogic
             conditionChecker = new ConditionChecker(conditions);
         }
         
-        public List<Vector2Int> Generate(int minValue, int maxValue, int count)
+        public IEnumerable<Vector2Int> Generate(int minValue, int maxValue, int count)
         {
             List<Vector2Int> verifiedVectors = new List<Vector2Int>(); 
             List<int> listNumbers = Utilities.GenerateNonRepeatingNumbers(minValue, maxValue);
@@ -23,15 +25,13 @@ namespace ConditionsLogic
                 foreach (var elementY in listNumbers.Where(elementY => conditionChecker.AllVerify(elementX, elementY, minValue, maxValue)))
                 {
                     verifiedVectors.Add(new Vector2Int(elementX, elementY));
-
-                    if (verifiedVectors.Count == count)
-                    {
-                        return verifiedVectors;
-                    }
                 }
             }
-
-            return verifiedVectors;
+            
+            verifiedVectors.Shuffle(new Random());
+            
+            
+            return verifiedVectors.Take(count);;
         }
     }
 }
