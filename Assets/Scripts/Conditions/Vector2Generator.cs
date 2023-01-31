@@ -22,7 +22,6 @@ namespace ConditionsLogic
             {
                 foreach (var elementY in listNumbers.Where(elementY => conditionChecker.AllVerify(elementX, elementY, minValue, maxValue)))
                 {
-                    Debug.Log(new Vector2(elementX, elementY));
                     verifiedVectors.Add(new Vector2Int(elementX, elementY));
 
                     if (verifiedVectors.Count == count)
